@@ -1,19 +1,25 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
-on: 
+on:
   push:
     branches: ["main"]
 
 jobs:
-  test:
-      runs-on: ubuntu-latest
+  docker:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: checkout code
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Build Docker image
-          run: docker build -t my-app .
+      - name: Install dependencies
+        run: npm install
 
-        - name: Run Docker container
-          run: docker run my-app
+      - name: Run tests
+        run: npm test
+
+      - name: Build Docker image
+        run: docker build -t my-app .
+
+      - name: Run Docker container
+        run: docker run -p 3000:3000 my-app

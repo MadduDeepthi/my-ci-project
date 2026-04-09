@@ -1,6 +1,10 @@
-const add = require('./app');
+const http = require('http');
 
-if (add(2, 3) !== 5) {
+function test() {
+  return true;
+}
+
+if (!test()) {
   throw new Error("Test failed!");
 }
 

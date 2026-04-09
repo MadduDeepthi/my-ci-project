@@ -1,5 +1,9 @@
-function add(a, b) {
-  return a + b;
-}
+const http = require('http');
 
-module.exports = add;
+const server = http.createServer((req, res) => {
+  res.end("Hello from CI/CD 🚀");
+});
+
+server.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
